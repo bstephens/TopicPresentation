@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Subprograms</title>
+<meta name="GENERATOR" content="MSHTML 8.00.6001.19019">
+<meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type"><link 
+rel=stylesheet type=text/css href="style.css">
+
+</head>
+<body leftmargin="0" rightmargin="0" topmargin="0" bgcolor="#cecece">
+<p><strong></strong>&nbsp;</p><strong>
+<p>
+<table border="0" cellspacing="0" cellpadding="3" width="100%" bgcolor="#0000a0" 
+align=center>
+  <tbody>
+  <tr>
+    <td>
+      <p align="center"><font color="#c0c0c0" size="2"><a class="navwhite" 
+      href="changethis.htm"><font 
+  color=#ffffff></font></a></font>&nbsp;</p></td></tr>
+  <tr>
+    <td bgcolor="#8080ff">
+      <p>&nbsp;</p>
+      <p></p></strong>
+      <h1 align="center"><font color="#000000">Parameter-Passing 
+      Methods</font></h1><strong>
+      <p>&nbsp;</p></strong></td></tr></strong>
+  <tr>
+    <td bgcolor="#ffffff">
+      <h2>Semantic Models of Parameter Passing</h2>
+      <ul>
+        <li>In mode - parameters can receive data from the corresponding actual 
+        parameter 
+        <li>Out mode - parameters can transmit data to the actual parameter 
+        <li>Inout mode - parameters can&nbsp;do both&nbsp;</li></ul>
+      <h2>Implementation Models of Parameter Passing</h2>
+      <ul>
+        <li>Pass-by-value 
+        <ul>
+          <li>Value of the actual parameter is used to initialize the 
+          corresponding formal parameter 
+          <li>Formal parameter acts as a local variable in the subprogram 
+          <li>Main advantage is that it is very fast for scalars in both linkage 
+          cost and access time 
+          <li>Main disadvantage is that the copy operation can be very costly if 
+          the parameter is large e.g. an array with many elements</li></ul>
+        <li>Pass-by-result 
+        <ul>
+          <li>Implementation model for out-mode parameters 
+          <li>Similar advantages and disadvantages to pass-by-value 
+          <li>Can result in parameter collision 
+          <li>Makes programs unportable between an implementation that evaluates 
+          addresses for out-mode parameters at the beginning of execution and an 
+          implementation that evaluates addresses at the end</li></ul></li></ul>
+      <p>
+      <table border="1" cellspacing="0" bordercolor="#000000" cellpadding="3" 
+      width="50%" align=center>
+        <tbody>
+        <tr>
+          <td>Parameter collision example</td></tr>
+        <tr>
+          <td>
+            <p><font face="Courier"><strong>void Fixer</strong>(<strong>out 
+            int</strong> x, <strong>out int</strong> y) {<br>&nbsp;&nbsp; x = 
+            17;<br>&nbsp;&nbsp; y = 35;<br>}</font></p>
+            <p><font face="Courier">...</font></p>
+            <p><font face="Courier">f.Fixer(<strong>out</strong> a, 
+            <strong>out</strong> a);</font></p></td></tr></tbody></table></p>
+      <ul>
+        <li>Pass-by-value-result 
+        <ul>
+          <li>Sometimes called <strong>pass-by-copy</strong> 
+          <li>Value of actual parameter is used to initialize the formal 
+          parameter which acts as a local variable to the subprogram 
+          <li>Value of formal parameter is copied back to the actual paramter at 
+          subprogram termination 
+          <li>Shares the same copy disadvantages as pass-by-value and 
+          pass-by-result</li></ul>
+        <li>Pass-by-reference 
+        <ul>
+          <li>Transmits an access path to actual parameter, usually a memory 
+          location, to the called subprogram 
+          <li>Main advantage is that the passing process is very efficient 
+          <li>Disadvantages 
+          <ul>
+            <li>Access to formal parameters is slower because it is indirect 
+            <li>There could be inadvertent changes made to the actual parameter 
+            if only one-way communication is necessary 
+            <li>Aliases can be created which makes program verification harder 
+            and reduces program reliability</li></ul></li></ul>
+        <li>Pass-by-Name 
+        <ul>
+          <li>The actual parameter is textually submitted for the correspoding 
+          formal parameter in all its occurrences in the subprogram 
+          <li>Used at compile time by the macros in assembly languages 
+          <li>Not common so it is not discussed further</li></ul></li></ul>
+      <h2>Implementing Parameter-Passing Methods</h2>
+      <ul>
+        <li>In most contemporary languages, parameter communication takes place 
+        through the run-time stack 
+        <li>Pass-by-value parameters have their values copied to stack locations 
+        which serve as storage for the formal parameters 
+        <li>Pass-by-result parameters are&nbsp;the opposite of pass-by-value 
+        <li>Pass-by-value-result parameters can be implemented as a combination 
+        of pass-by-value and pass-by-result 
+        <li>Pass-by-reference simply places the address in the 
+  stack</li></ul></td></tr><strong>
+  <tr>
+    <td>
+      <table width="100%">
+        <tbody>
+        <tr>
+          <td width="50%" align="left"><a class="navwhite" 
+            href="localReferencing.html">Previous</a></td>
+          <td width="50%" align="right"><a class="navwhite" 
+            href="paramSubProg.html">Next</a></td></tr></tbody></table></td></tr></tbody></table></p></strong></body></html>

@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Subprograms</title>
+<meta name="GENERATOR" content="MSHTML 8.00.6001.19019">
+<meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type"><link 
+rel=stylesheet type=text/css href="style.css">
+
+</head>
+<body leftmargin="0" rightmargin="0" topmargin="0" bgcolor="#cecece">
+<p><strong></strong>&nbsp;</p><strong>
+<p>
+<table border="0" cellspacing="0" cellpadding="3" width="100%" bgcolor="#0000a0" 
+align=center>
+  <tbody>
+  <tr>
+    <td>
+      <p align="center"><font color="#c0c0c0" size="2"><a class="navwhite" 
+      href="changethis.htm"><font 
+  color=#ffffff></font></a></font>&nbsp;</p></td></tr>
+  <tr>
+    <td bgcolor="#8080ff">
+      <p>&nbsp;</p>
+      <p></p></strong>
+      <h1 align="center"><font color="#000000">Local Referencing 
+      Environments</font></h1><strong>
+      <p>&nbsp;</p></strong></td></tr></strong>
+  <tr>
+    <td bgcolor="#ffffff">
+      <h2>Local Variables</h2>
+      <ul>
+        <li>Scope of local variables is usually the body of the subprogram in 
+        which they are defined 
+        <li>Can be either stack dynamic or static 
+        <ul>
+          <li>Stack dynamic 
+          <ul>
+            <li>Bound to storage when the subprogram begins execution and are 
+            unbound when that execution terminates 
+            <li>Provides flexibility to the subprogram and essential for 
+            recursive subprograms 
+            <li>Storage for local variables in an active program can be shared 
+            with the local variables in all inactive subprograms (useful for 
+            small memory computers) 
+            <li>Cost of the time required to allocate, initialize, and 
+            deallocate for each call to the subprogram 
+            <li>Access to stack dynamic local variables must be indirect while 
+            access to static local variables can be direct</li></ul>
+          <li>Static 
+          <ul>
+            <li>Slightly more efficient because they require no run-time 
+            overhead for allocation and deallocation 
+            <li>Direct access to local variables is more efficient than indirect 
+            access 
+            <li>Allow subprograms to be history sensitive 
+            <li>Unable to support recursion</li></ul></li></ul>
+        <li>Contemporary languages default local variables to stack dynamic 
+        <ul>
+          <li>C and C++ allow locals to be declared <strong>static</strong> 
+          <li>Ada subprograms and the methods of C++, Java, and C# have only 
+          stack dynamic local variables 
+          <li>Only variables with restricted scope are declared in Lua 
+          <ul>
+            <li>Declared using the <strong>local</strong> declaration 
+            <li>Nondeclared variables are global 
+            <li>Access to local variables in Lua is faster than access to global 
+            variables according to Ierusalimschy (2006)</li></ul></li></ul></li></ul>
+      <h2>Nested Subprograms</h2>
+      <ul>
+        <li>Nesting subprograms originated with Algol 60 to create a hierarchy 
+        of both logic and scopes 
+        <li>All of the direct descendants of C do not allow nesting of 
+        subprograms 
+        <li>JavaScript, Python, Ruby, and Lua allow subprogram 
+  nesting</li></ul></td></tr><strong>
+  <tr>
+    <td>
+      <table width="100%">
+        <tbody>
+        <tr>
+          <td width="50%" align="left"><a class="navwhite" 
+            href="designIssues.html">Previous</a></td>
+          <td width="50%" align="right"><a class="navwhite" 
+            href="parameterPassing.html">Next</a></td></tr></tbody></table></td></tr></tbody></table></p></strong></body></html>

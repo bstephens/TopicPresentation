@@ -1,0 +1,282 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Subprograms</title>
+<meta name="GENERATOR" content="MSHTML 8.00.6001.19019">
+<meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type"><link 
+rel=stylesheet type=text/css href="style.css">
+
+</head>
+<body leftmargin="0" rightmargin="0" topmargin="0" bgcolor="#cecece">
+<p><strong></strong>&nbsp;</p><strong>
+<p>
+<table border="0" cellspacing="0" cellpadding="3" width="100%" bgcolor="#0000a0" 
+align=center>
+  <tbody>
+  <tr>
+    <td>
+      <p align="center"><font color="#c0c0c0" size="2"><a class="navwhite" 
+      href="changethis.htm"><font 
+  color=#ffffff></font></a></font>&nbsp;</p></td></tr>
+  <tr>
+    <td bgcolor="#8080ff">
+      <p>&nbsp;</p>
+      <p></p></strong>
+      <h1 align="center"><font color="#000000">Fundamentals of 
+      Subprograms</font></h1><strong>
+      <p>&nbsp;</p></strong></td></tr></strong>
+  <tr>
+    <td bgcolor="#ffffff">
+      <h2>General Subprogram Characteristics</h2>
+      <ul>
+        <li>Each subprogram has a single entry point. 
+        <ul>
+          <li>Fortran subprograms can have multiple entries, but that is ignored 
+          during this chapter because it does not provide any fundamentally 
+          different capabilities.</li></ul>
+        <li>The calling program is suspended during the execution of the called 
+        subprogram, which implies that there is only one subprogram executing at 
+        a time. 
+        <li>Control always returns to the caller when the subprogram execution 
+        terminates.</li></ul>
+      <h2>Basic Definitions</h2>
+      <ul>
+        <li><strong>Subprogram definition</strong> describes the interface to 
+        and the actions of the subprogram abstraction. 
+        <li><strong>Subprogram call</strong> is the explicit request that a 
+        subprogram be executed 
+        <li>Considered <strong>Active</strong> if the subprogram has been 
+        called, but not completed 
+        <li><strong>Subprogram header</strong> 
+        <ul>
+          <li>Specifies that the following syntactic unit is a subprogram 
+          <li>Provides a name for the subprogram 
+          <li>It may optionally specify a list a of parameters</li></ul></li></ul>
+      <p>
+      <table border="1" cellspacing="0" bordercolor="#000000" cellpadding="3" 
+      width="50%" align=center>
+        <tbody>
+        <tr>
+          <td colspan="2">Subprogram header examples</td></tr>
+        <tr>
+          <td>Fortran</td>
+          <td><font face="Courier">Subroutine Adder(parameters)</font></td></tr>
+        <tr>
+          <td>Ada</td>
+          <td><font face="Courier">procedure Adder(parameters)</font></td></tr>
+        <tr>
+          <td>Python</td>
+          <td><font face="Courier">def&nbsp;Adder(parameters)</font></td></tr>
+        <tr>
+          <td>C</td>
+          <td><font face="Courier">void 
+      adder(parameters)</font></td></tr></tbody></table></p>
+      <ul>
+        <li><strong>Parameter profile</strong> contains the number, order, and 
+        types of its formal parameters 
+        <li><strong>Protocol</strong> of a subprogram is its parameter profile 
+        plus return type (for functions) and type if the language supports 
+        types</li></ul>
+      <h2>Parameters</h2>
+      <ul>
+        <li>Subprograms typically describe computations 
+        <li>Two ways for non-method subprogram can gain access to the data it 
+        needs to process 
+        <ul>
+          <li>Direct access to nonlocal variables 
+          <li>Parameter passing</li></ul>
+        <li>Parameter passing is more flexible and safer than direct access to 
+        nonlocal variables as discussed in Chapter 5 
+        <li>Subprogram call statements must include the name of the subprogram 
+        and a list of parameters called the <strong>actual 
+        parameters</strong>&nbsp;to be bound to the formal parameters 
+        <ul>
+          <li>Binding is done by&nbsp;position in nearly all programming 
+          languages 
+          <li>These parameters are called <strong>positional parameters</strong> 
+
+          <li>This can get confusing if the parameter list is not relatively 
+          short</li></ul>
+        <li>Another option to bind actual parameters&nbsp;to formal parameters 
+        are <strong>keyword parameters</strong> 
+        <ul>
+          <li>Parameters can appear in any order 
+          <li>Requires the subprogram user to know the names of the formal 
+          parameter</li></ul>
+        <li>Ada, Fortran 95, and Python allow a mix of positional parameters and 
+        keyword parameters 
+        <ul>
+          <li>The restriction for this is that all parameters must be keyworded 
+          after a keyword parameter appears on the list becuase the position may 
+          no longer be well defined 
+          <li>Ada, Python, Ruby, C++, Fortran 95 and PHP allow parameters with 
+          default values 
+          <li>C++ requires default parameters appear at the end of the list 
+          because C++ does not support keyword parameters</li></ul></li></ul>
+      <p>
+      <table border="1" cellspacing="0" bordercolor="#000000" cellpadding="3" 
+      width="50%" align=center>
+        <tbody>
+        <tr>
+          <td colspan="2">Parameter&nbsp;examples</td></tr>
+        <tr>
+          <td>Keyword</td>
+          <td>
+            <p><font face="Courier">adder(length = 
+            my_length,<br>&nbsp;&nbsp;&nbsp;&nbsp; list = 
+            my_array,<br>&nbsp;&nbsp;&nbsp;&nbsp; sum = my_sum)</font></p></td></tr>
+        <tr>
+          <td>Mixed</td>
+          <td><font face="Courier">
+            <p><font face="Courier">adder(my_length,<br>&nbsp;&nbsp;&nbsp;&nbsp; 
+            sum = my_sum,<br>&nbsp;&nbsp;&nbsp;&nbsp; list = 
+            my_array)</font></p></font></td></tr>
+        <tr>
+          <td>Default values</td>
+          <td>
+            <p><font face="Courier"><strong>def</strong> compute_pay(income 
+            exemptions = 1, tax_rate)<br></font><font face="Courier">pay = 
+            compute_pay(20000.0, tax_rate = 0.15)</font></p>
+            <p><font face="Courier"><strong>float</strong> compute_pay(float 
+            income, <strong>float</strong> tax_rate, <strong>int</strong> 
+            exemptions = 1)<br>pay = compute_pay(20000.0, 
+        0.15)</font></p></td></tr></tbody></table></p>
+      <ul>
+        <li>When there are fewer actual parameters than formal parameters, it is 
+        the programmer's responsibility to ensure parameter correspondence which 
+        is always positional</li></ul>
+      <p>
+      <table border="1" cellspacing="0" bordercolor="#000000" cellpadding="3" 
+      width="50%" align=center>
+        <tbody>
+        <tr>
+          <td colspan="2">Variable parameter&nbsp;examples</td></tr>
+        <tr>
+          <td>C printf</td>
+          <td>
+            <p><font face="Courier">printf ("Characters: %c %c", 'a', 
+            65);<br></font><font face="Courier"><br>//prints - Characters: a 
+            A</font></p></td></tr>
+        <tr>
+          <td>C#</td>
+          <td><font face="Courier">
+            <p><font face="Courier"><strong>public void</strong> 
+            DisplayList(<strong>params int</strong>[] list) {<br>&nbsp;&nbsp; 
+            <strong>foreach </strong>(<strong>int</strong> next 
+            <strong>in</strong> list) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            Console.WriteLine("Next value {0}", next);<br>&nbsp;&nbsp; 
+            }<br>}</font></p>
+            <p><font face="Courier">Myclass myObject = <strong>new 
+            </strong>MyClass();<br><strong>int</strong>[] myList = <strong>new 
+            int</strong>[6] {2, 4, 6, 8, 10, 12};</font></p>
+            <p><font 
+            face=Courier>myObject.DisplayList(myList);<br>myObject.DisplayList(2, 
+            4, 3*x-1, 17);</font></p></font></td></tr>
+        <tr>
+          <td>
+            <p>Ruby <br>- key =&gt; value pairs<br>- array formal 
+          parameter</p></td>
+          <td>
+            <p><font face="Courier">list = [2, 4, 6, 8]<br><strong>def</strong> 
+            tester(p1, p2, p3, *p4)<br>&nbsp;&nbsp; 
+            ...<br><strong>end</strong><br><br>tester('first', mon =&gt; 72, tue 
+            =&gt; 68, wed =&gt; 59, *list)<br></font><font 
+            face=Courier><br><strong>Inside Tester -</strong><br>p1 is 
+            'first'<br>p2 is {mon =&gt; 72, tue =&gt; 68, wed =&gt; 59)<br>p3 is 
+            2<br>p4 is [4, 6, 8]</font></p></td></tr>
+        <tr>
+          <td>
+            <p>Python<br>- initial parameters<br>- constant array 
+            (<em>tuple</em>)<br>- hash parameter</p></td>
+          <td><font face="Courier"><strong>def</strong> fun1(p1, p2, *p3, 
+            **p4):<br>&nbsp;&nbsp; ...<br>...<br>fun1(2, 4, 6, 8, mon=68, 
+            tue=72, wed=77)<br><br><strong>Inside&nbsp;fun1 -</strong><br>p1 is 
+            2<br>p2 is 4<br>p3 is [6, 8]<br>p4 is {'mon': 68, 'tue': 72, 'wed': 
+            77}</font></td></tr>
+        <tr>
+          <td>Lua<br>- three periods (...)</td>
+          <td>
+            <p><font face="Courier">function multiply (...)<br>&nbsp;&nbsp; local 
+            product = 1<br>&nbsp;&nbsp; for i, next in ipairs{...} 
+            do<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; product = product * 
+            next<br>&nbsp;&nbsp; end<br>&nbsp;&nbsp; return 
+            product<br>end</font></p>
+            <p><font face="Courier">multiply(4, 7, 3) returns 
+        84</font></p></td></tr></tbody></table></p>
+      <h2>Ruby Blocks</h2>
+      <ul>
+        <li>In most programming languages, processing the data in an array is 
+        done by using loops 
+        <li>Ruby includes iterator methods for its data structures e.g. 
+        <strong>Array</strong> structure has the <strong>each</strong> iterator 
+        method and blocks of code can be specified on the call to the iterator 
+        <li>Blocks must be delimited by braces or a <strong>do-end</strong> pair 
+
+        <ul>
+          <li>Can only appear following a method call 
+          <li>Can have formal parameters which are specified between | |</li></ul>
+        <li>The block that is passed to the called subprogram is called again 
+        with <strong>yield</strong> 
+        <li>Blocks are closures so they retain the environment if the place 
+        where they are defined regardless of where they are called 
+        <ul>
+          <li>local variables 
+          <li>current object</li></ul></li></ul>
+      <p>
+      <table border="1" cellspacing="0" bordercolor="#000000" cellpadding="3" 
+      width="50%" align=center>
+        <tbody>
+        <tr>
+          <td>Ruby block&nbsp;example - Fibonacci</td></tr>
+        <tr>
+          <td>
+            <p><font face="Courier"># A method to compute and yield Fibonacci 
+            numbers up to a limit</font></p>
+            <p><font face="Courier"><strong>def</strong> 
+            fibonacci(last)<br>&nbsp;&nbsp; first, second = 1, 1<br>&nbsp;&nbsp; 
+            while first &lt;= last<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            <strong>yield</strong> first<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            first, second = second, first + second<br>&nbsp;&nbsp; 
+            <strong>end<br>end</strong></font></p>
+            <p><font face="Courier"># Call fibonacci with a block to display the 
+            numbers<br>puts "Fibonacci numbers less than 100 
+            are:"<br>fibonacci(100) {|num| print num, " "}<br>puts # Outputs a 
+            new line</font></p>
+            <p><font face="Courier">#Call it again to sum the numbers and display 
+            sum<br>sum = 0<br>fibonacci(100) {|num| sum += num}<br>puts "Sum of 
+            the Fibonacci numbers less than 100 is: #{sum}"</font></p>
+            <p><font face="Courier"><strong>Output</strong><br>Fibonacci numbers 
+            less than 100 are:<br>1 1 2 3 5 8 13 21 34 55 89<br>Sum of the 
+            Fibonacci numbers less than 100 is: 
+      232</font></p></td></tr></tbody></table></p>
+      <h2>Procedures and Functions</h2>
+      <ul>
+        <li>Procedures 
+        <ul>
+          <li>Collections of statements that define parameterized computations 
+          <li>Enacted by single call statements 
+          <li>For example - Create a procedure in Ada to sort arrays of data 
+          because Ada does not have a sort statement 
+          <li>Can produce results in the calling program by two methods 
+          <ul>
+            <li>change variables that are not formal parameters but are still 
+            visible in both the procedure and calling program 
+            <li>change formal parameters that allow transfer of data to the 
+            caller</li></ul></li></ul>
+        <li>Functions 
+        <ul>
+          <li>Semantically modeled on mathematical functions 
+          <li>Called by appearances of their names in expressions 
+          <li>Faithful model functions produce no side effects e.g. modifying 
+          parameters or variables defined outside the function</li></ul>
+        <li>C-based languages only have functions, but these can behave like 
+        procedures by using <strong>void</strong> return type 
+        <li>Fortran and Ada provide both functions and 
+  proceduress</li></ul></td></tr><strong>
+  <tr>
+    <td>
+      <table width="100%">
+        <tbody>
+        <tr>
+          <td width="50%" align="left"><a class="navwhite" 
+            href="index.html">Previous</a></td>
+          <td width="50%" align="right"><a class="navwhite" 
+            href="designIssues.html">Next</a></td></tr></tbody></table></td></tr></tbody></table></p></strong></body></html>
